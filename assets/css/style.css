@@ -1,0 +1,7 @@
+.answer {
+    background-color: lightblue;
+  }
+
+.answer:hover {
+    background: rgb(182, 250, 182);
+}
