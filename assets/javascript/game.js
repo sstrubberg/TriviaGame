@@ -1,9 +1,10 @@
 var startScreen;
 var inGameHTML;
 var countDown = 45;
-var questionArray = ["What is Spider-Man's secret identity?", "Throughout the 1960's, the X-Men's roster only featured one female. Who was it?"];
-var answerArray = [["Toby McGuire", "Peter Parker", "Steve Rogers", "Scott Summers"], ["Anna Marie", "Ororo Munroe", "Jean Grey", "Emma Frost"]];
-var correctAnswersArray = ["B. Peter Parker", "C. Jean Grey"];
+var questionArray = ["When is Parker's birthday?", "Which one of Parker's 'Truck Crew' has been friends with him since they were infants?", "Who was Parker for Halloween this year?", "Which form of telepathy does Parker prefer?", "Where does Parker go to school?", "What is Parker's favorite mode of two-wheeled transportation?"];
+var answerArray = [["June 3rd, 2013", "December 4th, 2013", "November 27th, 2014", "March 13th, 2014"], ["Enzo", "River", "Ezra", "Jude"], ["Bob the Builder", "Mario", "Spider-Man", "Darth Vader"], ["ESP", "Mindmeld", "Mind Reading", "Psychic Probe"], ["Green Sprout", "Stepping Stone", "Child Craft School", "Habibi's Hutch Preschool"], ["Motorcycle","Airplane","Bike", "Boat"]];
+var correctAnswersArray = ["B. December 4th, 2013", "A. Enzo", "D. Darth Vader", "B. Mindmeld", "A. Green Sprout", "C. Bike"];
+var imageArray = ["<img class='winner-image' src='assets/images/born.jpg'>", "<img class='winner-image' src='assets/images/parkerenzo.jpg'>", "<img class='winner-image' src='assets/images/darthvader.jpg'>", "<img class='winner-image' src='assets/images/mindmeld.jpg'>", "<img class='winner-image' src='assets/images/gs-hard-day.jpg'>", "<img class='winner-image' src='assets/images/parker-bike.jpg'>"];
 var theClock;
 var unansweredTally = 0;
 var correctTally = 0;
@@ -14,7 +15,7 @@ var selectedAnswer;
 
 $(document).ready(function() {
     function initialScreen() {
-        startScreen = "<p><a class='btn btn-primary start-button' href='#' role='button'>Start Quiz</a></p>";
+        startScreen = "<p><a class='btn btn-success btn-lg start-button' href='#' role='button'>Start</a></p>";
         $(".main-area").html(startScreen);
     }
 initialScreen();
@@ -55,7 +56,7 @@ function generateLossScreen () {
 
 function generateWinScreen () {
     correctTally++;
-    inGameHTML = "<p>Time Remaining: " + countDown + "</p><p> Correct!</p><p>" + correctAnswersArray[questionCounter] + " is the right answer!</p>";
+    inGameHTML = "<p>Time Remaining: " + countDown + "</p><p> Correct!</p><p>" + correctAnswersArray[questionCounter] + " is the right answer!</p><p>" + imageArray[questionCounter] + "</p>";
     $(".main-area").html(inGameHTML);
     setTimeout(waitState, 5000);
 }
@@ -80,13 +81,18 @@ function clickClickBoom() {
 }
 
 function waitState() {
-    if (questionCounter < 2) {
+    if (questionCounter < 5) {
         questionCounter++;
         countDown = 45;
         generateGamePlay();
         clickClickBoom();
     }
     else {
-        // finalHTML ();
+        finalHTML();
     }
+}
+
+function finalHTML() {
+    inGameHTML = "<p>Here are your results! </p><p>Correct Answers: " + correctTally + "</p><p>Incorrect Answers: " + incorrectTally + "</p><p>Unanswered: " + unansweredTally + "<p>";
+    $('.main-area').html(inGameHTML);
 }

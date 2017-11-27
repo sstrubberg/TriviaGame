@@ -1,7 +1,29 @@
+body {
+    background-color: rgb(37, 49, 102);
+    
+}
+
+.jumbotron {
+    background-color: rgb(37, 49, 102);
+    color: rgb(255, 255, 255);
+}
+
 .answer {
-    background-color: lightblue;
+    background-color: rgb(10, 83, 0);
+    padding: 10px;
+    
   }
 
 .answer:hover {
-    background: rgb(182, 250, 182);
+    background: rgb(147, 248, 147);
+    color: black;
+}
+
+.start-button {
+    margin-top: 40px;
+    border-radius: 0px;
+}
+
+.winner-image {
+    width: 40%;
 }
